@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../Form/Button.module.css'; // Import CSS module
 import imgStyles from '../Images/img.module.css'; // Import CSS module for image styles
 
-const Button = ({ onClick, children, X, Y }) => {
+function Button({ onClick, children, X, Y }){
   return (
     <div>
       <button className={styles.customButton} style={{transform: `translate(${X}px, ${Y}px)` }} onClick={onClick}>

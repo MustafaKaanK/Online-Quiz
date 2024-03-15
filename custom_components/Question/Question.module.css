@@ -1,0 +1,31 @@
+.customQuestion{
+    padding: 10px 8px;
+    overflow: unset;
+    word-break: break-all;
+    border: 1px solid black;
+    overflow: hidden;
+    flex-wrap: wrap; 
+    display: flex; 
+    height: 25vh; 
+    width: 27vw; 
+    margin: 5px; 
+    border-radius: 7px; 
+    background-color: blue; 
+    color: red; 
+    align-items: flex-start; 
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 5.7s ease;
+    transition: background-color 0.8s ease;
+
+}
+
+.customQuestion:hover{
+    transform: scale(1.05);
+    background-color: white; 
+}
+
+.customQuestion:activate{
+    font-size: 1.1em;
+}
+
