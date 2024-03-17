@@ -24,6 +24,7 @@ for (let i = 0; i < numberOfTests; i++) {
   return (
     <>
       <Question/>
+      <Article/>
     </>
   );
 };

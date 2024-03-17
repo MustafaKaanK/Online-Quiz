@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 98vw;
+  height: 98vh;
+  background-image: url('/pic.jpeg');
+  background-size: cover;
+  text-align: center;
+  background-position: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.blurBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  width: 30vw;
+  height: 15vh;
+  padding: 20px;
+  background-color: rgba(31, 216, 62, 0.8); /* Slightly transparent background */
+  
+  transition: transform 0.3s ease;
+  box-shadow: 1px 1px 10px 10px rgb(184, 22, 22); 
+}
+
+.blurBackground:hover{
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(3px); /* Blur effect */
+  transform: scale(1.5);
+}

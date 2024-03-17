@@ -1,18 +1,15 @@
+import style from './Article.module.css'
 const Article = () => {
 
-    const word = "asdkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkasşldkaşlkşskşdlkalşdkşlaskdaslşdksşld" 
-    return(
-        <>
-            <div style={{display: "flex", flexWrap: "wrap", flexDirection: "row", alignContent: "center", justifyContent: "center", height: "98vh", margin: "0", width: "98vw", boxSizing: "border-box" }}>
-                <div style={{padding: "10px",border: "1px solid gray", display: "flex", flexWrap: "wrap", backgroundColor: "red", width: "30vw", height: "30vh",  wordBreak: "break-all", alignContent: "center", justifyContent: "center"}}>
-                    {word}
-                </div>
-                <div style={{marginLeft: "10px",padding: "10px",border: "1px solid gray", display: "flex", flexWrap: "wrap", backgroundColor: "red", width: "30vw", height: "30vh",  wordBreak: "break-all"}}>
-                    {word}
-                </div>
-            </div>
-        </>
-    );
-};
+    return (
+        <div className={style.container}>
+            <h1 style={{color: "black"}}>Hello, world!</h1>
+          <div className={style.blurBackground}>
+            <h1>Hello, world!</h1>
+            <p>This is a slightly transparent component with a blurred background.</p>
+          </div>
+        </div>
+      );
+    };
 
 export default Article;
