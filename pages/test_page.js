@@ -2,17 +2,14 @@ import Head from 'next/head';
 import Router from 'next/router';
 //import styles from '../styles/Home.module.css';
 import React, { useEffect, useState } from 'react';
-import Button from '../custom_components/Button/Button'; // Import the Button component
-import styles from '../styles/index.module.css';
-import Fetchdata from '../custom_functions/Fetchdata';
 import Question from '../custom_components/Question/Question';
-import Article from '../custom_components/Question/Article';
 
 const Test = () => {
 
 const question = "What is your name?";
 const numberOfTests = 4;
-const answer = "OPTION"
+const answer = "This is an option, This is an option, This is an option, This is an option, This is an option, This is an option, This is an option,"
+  
 
 const buttons = [];
 for (let i = 0; i < numberOfTests; i++) {
@@ -23,8 +20,9 @@ for (let i = 0; i < numberOfTests; i++) {
 
   return (
     <>
-      <Question/>
-      <Article/>
+    
+    <Question/>
+    
     </>
   );
 };
