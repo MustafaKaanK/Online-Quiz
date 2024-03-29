@@ -25,7 +25,8 @@ def getQuiz(request, pk):
 # .../quizzes/<str:pk>/questions/
 @api_view(['GET'])
 def getQuestions(request, pk):
-    questions = Question.objects.all()
+    quiz = Quiz.objects.get(id=pk)
+    questions = quiz.questions.all()
     serializer = QuestionSimplifiedSerializer(questions, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -34,7 +35,7 @@ def getQuestions(request, pk):
 @api_view(['GET'])
 def getQuestion(request, pk1, pk2):
     quiz = Quiz.objects.get(id=pk1)
-    question = quiz.questions.objects.get(id=pk2)
+    question = quiz.questions.get(number_order=pk2)
     serializer = QuestionDetailedSerializer(question)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
