@@ -47,18 +47,3 @@ class ResultDetailedSerializer(ModelSerializer):
     class Meta:
         model = Result
         fields = ('description', 'updated_date', 'created_date')
-
-
-
-
-# Serializers for .../quizzes/ -> GET Request
-class QuestionOnlyIdsSerializer(ModelSerializer):
-    class Meta:
-        model = Question
-        fields = ('id', 'description')
-
-class QuizGetAllSerializer(ModelSerializer):
-    questions = QuestionOnlyIdsSerializer(many=True)
-    class Meta:
-        model = Quiz
-        fields = ('id', 'description', 'questions', 'updated_date', 'created_date')
