@@ -12,7 +12,7 @@ class Option(models.Model):
     class Meta:
         ordering = ['id']
     def __str__(self):
-        return f"Q: {self.question_id} | D: {self.description}"
+        return self.description
 
 class Question(models.Model):
     description = models.CharField(max_length=100, default='')

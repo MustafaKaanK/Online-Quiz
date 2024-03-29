@@ -5,7 +5,7 @@ from .models import Option, Question, Result, Quiz, Submission
 class QuestionOnlyIdsSerializer(ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id')
+        fields = ('id', 'description')
 
 class QuizGetAllSerializer(ModelSerializer):
     questions = QuestionOnlyIdsSerializer(many=True)
@@ -18,10 +18,10 @@ class QuizGetAllSerializer(ModelSerializer):
 class OptionsOnlyIdAndDescSerializer(ModelSerializer):
     class Meta:
         model = Option
-        fields = ('id')
+        fields = ('id', 'description')
 
 class QuestionGetSelectedSerializer(ModelSerializer):
-    options = OptionsOnlyIdAndDescSerializer
+    options = OptionsOnlyIdAndDescSerializer(many=True)
     class Meta:
         model = Question
         fields = ('id', 'description', 'options', 'created_date', 'updated_date')
@@ -31,4 +31,4 @@ class QuestionGetSelectedSerializer(ModelSerializer):
 class ResultGetSelectedSerializer(ModelSerializer):
     class Meta:
         model = Result
-        field = ('description')
+        fields = ('id', 'description')
