@@ -5,9 +5,9 @@ call djenv\Scripts\activate.bat
 
 echo Running Django migrations...
 
-python manage.py makemigrations
-python manage.py migrate
+python online_quiz\manage.py makemigrations
+python online_quiz\manage.py migrate
 
 echo Starting the Django development server...
 
-python manage.py runserver
+python online_quiz\manage.py runserver
