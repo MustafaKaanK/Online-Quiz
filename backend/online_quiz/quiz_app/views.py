@@ -43,14 +43,15 @@ def getQuestion(request, pk1, pk2):
 # .../quizzes/<str:pk>/submission/
 @api_view(['POST'])
 def submitAnswers(request, pk):
-    selected_options_ids = request.data['selected_options']
+    selected_options_nums = request.data['selected_options']
     selected_quiz = Quiz.objects.get(id=pk)
-    result_factors = np.zeros(selected_quiz.results.count())
+    result_factor_list = np.zeros(selected_quiz.results.count())
     # TODO(MBM): "selected_options" and "selected_quiz.result" length must be same. Return error if it is not.
-    for selected_options_id in selected_options_ids:
-        selected_option = Option.objects.get(id=selected_options_id)
-        result_factors += selected_option.result_factors
-    result_index = np.argmax(result_factors)
-    result = selected_quiz.results.all()[int(result_index)]
+    for i in range(1, len(selected_options_nums) + 1):
+        selected_question = selected_quiz.questions.get(number_order=i)
+        selected_option = selected_question.options.get(number_order=selected_options_nums[i - 1])
+        result_factor_list += selected_option.result_factor_list
+    result_index = np.argmax(result_factor_list)
+    result = selected_quiz.results.all().order_by('id')[int(result_index)]
     serializer = ResultDetailedSerializer(result)
     return Response(serializer.data, status=status.HTTP_200_OK)
