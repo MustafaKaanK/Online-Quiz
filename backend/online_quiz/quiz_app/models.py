@@ -12,7 +12,7 @@ class Option(models.Model):
     class Meta:
         ordering = ['id']
     def __str__(self):
-        return self.description
+        return f"No: {self.number_order} | Result Factor Size: {len(self.result_factor_list)} | Description : {self.description}"
 
 class Question(models.Model):
     description = models.CharField(max_length=100, default='')
@@ -23,7 +23,7 @@ class Question(models.Model):
     class Meta:
         ordering = ['id']
     def __str__(self):
-        return self.description
+        return f"No: {self.number_order} | Description : {self.description}"
     
 class Result(models.Model):
     description = models.CharField(max_length=100, default='')
@@ -33,7 +33,7 @@ class Result(models.Model):
     class Meta:
         ordering = ['id']
     def __str__(self):
-        return self.description
+        return f"Description : {self.description}"
     
 class Quiz(models.Model):
     description = models.CharField(max_length=100, default='')
@@ -45,7 +45,7 @@ class Quiz(models.Model):
     class Meta:
         ordering = ['id']
     def __str__(self):
-        return self.description
+        return f"Description : {self.description}"
     
 class Submission(models.Model):
     quiz_id = models.IntegerField(default=-1)
