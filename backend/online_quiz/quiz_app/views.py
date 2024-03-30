@@ -5,7 +5,7 @@ from .serializers import OptionSimplifiedSerializer, OptionDetailedSerializer, Q
 from .models import  Option, Question, Quiz, Result, Submission
 import numpy as np
 
-# Returns all quiz which includes quiz descriptions as text.
+# Returns all quizzes with simplified information.
 # .../quizzes/
 @api_view(['GET'])
 def getQuizzes(request):
@@ -13,7 +13,7 @@ def getQuizzes(request):
     serializer = QuizSimplifiedSerializer(quizzes, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-# TODO(MBM): Add comment here.
+# Returns the selected quiz with detailed information.
 # .../quizzes/<str:pk>/
 @api_view(['GET'])
 def getQuiz(request, pk):
@@ -24,7 +24,7 @@ def getQuiz(request, pk):
     except Quiz.DoesNotExist:
         return Response({"error": f"Quiz with id {pk} does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
-# TODO(MBM): Add comment here.
+# Returns all questions for selected quiz with simplified information.
 # .../quizzes/<str:pk>/questions/
 @api_view(['GET'])
 def getQuestions(request, pk):
@@ -36,7 +36,7 @@ def getQuestions(request, pk):
     except Quiz.DoesNotExist:
         return Response({"error": f"Quiz with id {pk} does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
-# TODO(MBM): Add comment here.
+# Returns the selected question for selected quiz with detailed information.
 # .../quizzes/<str:pk>/questions/<str:pk>/
 @api_view(['GET'])
 def getQuestion(request, pk1, pk2):
@@ -50,7 +50,7 @@ def getQuestion(request, pk1, pk2):
     except Question.DoesNotExist:
         return Response({"error": f"Question with number {pk2} does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
-# TODO(MBM): Add comment here.
+# Submits answers for selected quiz then, calculates and returns the result.
 # .../quizzes/<str:pk>/submission/
 @api_view(['POST'])
 def submitAnswers(request, pk):
@@ -77,8 +77,13 @@ def submitAnswers(request, pk):
                 return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         result_index = np.argmax(result_factor_list)
         result = selected_quiz.results.all().order_by('id')[int(result_index)]
-        serializer = ResultDetailedSerializer(result)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        result.serializer = ResultDetailedSerializer(result)
+        Submission.objects.create(
+            quiz_id = int(pk),
+            selected_options_ids = request.data['selected_options']
+        )
+        # TODO(MBM): Add error handling for if submission creating fails.
+        return Response(result.serializer.data, status=status.HTTP_200_OK)
     except KeyError:
         return Response({"error": "'selected_options' not found in request data!"}, status=status.HTTP_400_BAD_REQUEST)
     except Quiz.DoesNotExist:

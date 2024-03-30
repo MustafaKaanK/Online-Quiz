@@ -55,4 +55,4 @@ class Submission(models.Model):
     class Meta:
         ordering = ['id']
     def __str__(self):
-        return self.created_date
+        return f"Quiz: {self.quiz_id} | Created Date: {self.created_date}"
