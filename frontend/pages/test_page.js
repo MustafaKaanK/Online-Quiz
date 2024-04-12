@@ -1,28 +1,40 @@
 import Head from 'next/head';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 //import styles from '../styles/Home.module.css';
 import React, { useEffect, useState } from 'react';
 import Question from '../custom_components/Question/Question';
+import { useLocalStorage } from 'react-use';
 
 const Test = () => {
 
-const question = "What is your name?";
-const numberOfTests = 4;
-const answer = "This is an option, This is an option, This is an option, This is an option, This is an option, This is an option, This is an option,"
-  
+const router = useRouter();  
+/*const {query: {testID,
+  answersList,
+  testCount},} = router;
 
-const buttons = [];
-for (let i = 0; i < numberOfTests; i++) {
-  buttons.push(
-    <button style={{height: "18vh", width: "25vw", margin: "5px", border: "3px solid black", borderRadius: "5px", backgroundColor: "blue", color: "red" }}>{answer}</button>
-  );
-}
+  const parsedArray = answersList ? JSON.parse(answersList) : [];  */
+
+
+
+
+
+
+//---------------------------------------------
+
+const [dataList] = useLocalStorage('myData', '');
+const testID = dataList ? dataList.dataList[0]: ''; 
+const answersList = dataList ? dataList.dataList[1]: ''; 
+const testCount = dataList ? dataList.dataList[2]: ''; 
+
+console.log(answersList);
+// fragment arasında normalde bu var  <Question testID = {testID} answersList = {parsedArray} testCount={testCount}/> 
+
+
+
 
   return (
     <>
-    
-    <Question/>
-    
+    <Question testID = {testID} answersList = {answersList} testCount={testCount}/> 
     </>
   );
 };

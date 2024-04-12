@@ -1,46 +1,84 @@
-import Head from 'next/head';
-import Router from 'next/router';
+
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-//import styles from '../styles/Home.module.css';
 import Button from '../custom_components/Button/Button'; // Import the Button component
 import styles from '../styles/index.module.css';
+import { useLocalStorage } from 'react-use';
 
 
 const Index = () => {
   const router = useRouter();
+  const [pageData, setPageData] = useState(null);
+  const [sendData, setSendData] = useLocalStorage('myData', '');
 
-  const [stateExample, setstateExample] = useState("korki");
-  useEffect(() => {console.log(stateExample)},[stateExample]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/quizzes/`);
+        if (response.ok) {
+          const data = await response.json();
+          setPageData(data);
+        }
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  const handleClick = () => {
-    setstateExample("new korki")
-    router.push('/test_page');
+    fetchData();
+  }, []);
+
+  const answersList = [];
+  console.log(answersList);
+  const testCount = pageData ? pageData.length : '';
+  
+  
+
+//Burada querye pageData gibi değişkenleri atıp test page ine atıcaz 
+  const handleClick = (input) => {  
+    const testID = input+1;
+    setSendData({dataList: [testID, answersList, testCount]});
+    router.push({
+      pathname:'/test_page',
+      query: {
+        testID /*
+        answersList: JSON.stringify(answersList),
+        testCount*/
+      },
+    });
     
   };
 
-  let Y = 3;
-
-  const numberOfTests = 2; // Number of Tests you want to render
   
 
   //Array according to test count
   const buttons = [];
-  for (let i = 0; i < numberOfTests; i++) {
+  for (let i = 0; i < testCount; i++) {
     buttons.push(
-      <Button key={i} onClick={handleClick} children={`${i}`}></Button>
+      <Button key={i} onClick={() => handleClick(i)} children={`${i+1}`}></Button>
     );
   }
 
+
+
+//---------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+  //console.log(passedValue);
   return (
     <>
-    <div className={styles.index} >
-      <h1 style={{ fontFamily: 'helvetica', display: 'flex', justifyContent: 'center', color: 'red' }}>Choose Your Test</h1> 
-      <br />     
-      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: `0 ${500/numberOfTests}px`}}> 
-      {buttons}
-      </div>
-    </div>
+     <div className= {styles.background}>
+          {buttons}
+      </div>      
     </>
   );
 };
