@@ -8,33 +8,19 @@ import { useLocalStorage } from 'react-use';
 const Test = () => {
 
 const router = useRouter();  
-/*const {query: {testID,
-  answersList,
-  testCount},} = router;
-
-  const parsedArray = answersList ? JSON.parse(answersList) : [];  */
-
-
-
-
-
-
-//---------------------------------------------
 
 const [dataList] = useLocalStorage('myData', '');
 const testID = dataList ? dataList.dataList[0]: ''; 
 const answersList = dataList ? dataList.dataList[1]: ''; 
-const testCount = dataList ? dataList.dataList[2]: ''; 
+const questionCount = dataList ? dataList.dataList[2]: ''; 
 
 console.log(answersList);
-// fragment arasında normalde bu var  <Question testID = {testID} answersList = {parsedArray} testCount={testCount}/> 
-
-
-
+console.log(testID);
+console.log(questionCount);
 
   return (
     <>
-    <Question testID = {testID} answersList = {answersList} testCount={testCount}/> 
+    <Question testID = {testID} answersList = {answersList} questionCount={questionCount}/> 
     </>
   );
 };

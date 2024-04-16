@@ -3,26 +3,24 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState} from 'react';
 import { useLocalStorage } from 'react-use';
 
+
 const Result = () =>{
   const router = useRouter();
   const {testID} = router.query;
   const [responseData, setResponseData] = useState("null");
+  const [animationTrigger, setAnimationTrigger] = useState(false);
 
+ 
   const [dataList] = useLocalStorage('myArray', '');
+  
   const result = dataList ? dataList : '';
-  
   console.log(result);
-  
-  /*
-  setSendData({dataList: [testID, answersList, testCount]});
-
-  const [dataList] = useLocalStorage('myData', '');
-  const testID = dataList ? dataList.dataList[0]: ''; 
-  const answersList = dataList ? dataList.dataList[1]: ''; 
-  const testCount = dataList ? dataList.dataList[2]: ''; 
-  */
 
   useEffect(() => {
+    setAnimationTrigger(true);
+    const timeout = setTimeout(() => {
+      setAnimationTrigger(false);
+    }, 2500);
     const fetchData = async () => {
       try {
         const payload = {
@@ -46,18 +44,21 @@ const Result = () =>{
     
     
       fetchData();
+      return () => clearTimeout(timeout);
     
   }, []);
   const description = responseData ? responseData.description : '';
+  
+  //Burayı routing işleminde koycaksın
   localStorage.clear();
    
   return (
     <>
       <div className= {questionStyle.background}>
         <div className= {questionStyle.card}>
-          <div className={questionStyle.title}>{description}</div>
-            {"Create Date: "+responseData.created_date}<br></br>
-            {"Update Date: "+responseData.updated_date}
+          <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.fadeInEx : ''}`}>{description}</div>
+            {"Create Date: "+ responseData.created_date}<br></br>
+            {"Update Date: "+ responseData.updated_date}
         </div>
       </div>      
     </>

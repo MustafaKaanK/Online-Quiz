@@ -30,15 +30,18 @@ const Index = () => {
   }, []);
 
   const answersList = [];
-  console.log(answersList);
+
   const testCount = pageData ? pageData.length : '';
+
   
   
 
 //Burada querye pageData gibi değişkenleri atıp test page ine atıcaz 
   const handleClick = (input) => {  
     const testID = input+1;
-    setSendData({dataList: [testID, answersList, testCount]});
+    const testData = pageData.find(item => item.id == testID);
+    const questionCount = testData.questions.length;
+    setSendData({dataList: [testID, answersList, questionCount]});
     router.push({
       pathname:'/test_page',
       query: {
@@ -61,19 +64,6 @@ const Index = () => {
   }
 
 
-
-//---------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-  //console.log(passedValue);
   return (
     <>
      <div className= {styles.background}>
