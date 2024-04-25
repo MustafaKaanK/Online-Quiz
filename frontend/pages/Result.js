@@ -2,31 +2,47 @@ import questionStyle from '../custom_components/Question/QuestionScreen.module.c
 import { useRouter } from 'next/router';
 import React, { useEffect, useState} from 'react';
 import { useLocalStorage } from 'react-use';
+import imgStyles from '../custom_components/Images/img.module.css';
 
 
 const Result = () =>{
   const router = useRouter();
   const {testID} = router.query;
-  const [responseData, setResponseData] = useState("null");
+  const [responseData, setResponseData] = useState(`null`);
   const [animationTrigger, setAnimationTrigger] = useState(false);
-
  
   const [dataList] = useLocalStorage('myArray', '');
+  const [newID, setnewID] = useLocalStorage('newID', '');
+
+  const name = "12345";
   
   const result = dataList ? dataList : '';
-  console.log(result);
+
+  
+  useEffect(() => {
+    setAnimationTrigger(false);
+    if (testID) {
+      setnewID(testID); // Setting testID in localStorage
+    } 
+      setAnimationTrigger(true);
+      const timeout = setTimeout(() => {
+        setAnimationTrigger(false);
+      }, 2500);
+    
+      return () => clearTimeout(timeout);
+    
+  }, [newID]);
+  
 
   useEffect(() => {
-    setAnimationTrigger(true);
-    const timeout = setTimeout(() => {
-      setAnimationTrigger(false);
-    }, 2500);
+    
+    
     const fetchData = async () => {
       try {
         const payload = {
           selected_options: result
         };
-        const response = await fetch(`http://localhost:8000/quizzes/${testID}/submission/`, {
+        const response = await fetch(`http://localhost:8000/quizzes/${newID}/submission/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -42,25 +58,43 @@ const Result = () =>{
       }
     };
     
-    
+    if(newID){
       fetchData();
-      return () => clearTimeout(timeout);
+    }
     
-  }, []);
+  }, [newID]);
+
   const description = responseData ? responseData.description : '';
+
+  const handleclick = () => {/*
+    router.push({
+      pathname:'/'
+  })*/}
   
   //Burayı routing işleminde koycaksın
-  localStorage.clear();
+  
    
   return (
     <>
       <div className= {questionStyle.background}>
-        <div className= {questionStyle.card}>
-          <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.fadeInEx : ''}`}>{description}</div>
-            {"Create Date: "+ responseData.created_date}<br></br>
-            {"Update Date: "+ responseData.updated_date}
+        <div className= {`${questionStyle.Resultcard} ${questionStyle.cardResult}`}>
+          <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.smallToBig : ''}` } onClick= {() => handleclick()}>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "1vh", fontSize: "3vh", color: "rgba(0, 0, 0, 1)"}}>
+            <img src={`${name}.jpg`} className={imgStyles.img} alt="Image" /> 
+            <br/>
+            <div>
+             {description}
+            </div>
+            <div > 
+             {"Create Date: " + responseData.created_date}
+            </div>
+            <div s>
+             {"Update Date: " + responseData.updated_date}
+            </div>
+            </div> 
+          </div>            
         </div>
-      </div>      
+      </div>   
     </>
   );
 };

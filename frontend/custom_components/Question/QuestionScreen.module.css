@@ -1,15 +1,21 @@
-.background{
-    background-image: url('/681763.jpg');
-    background-clip: border-box;
-    background-size: cover;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    height: 98vh;
-    width: 98.5vw;
-    border-radius: 7px;
+.background {
+  background-image: url('/681763.jpg');
+  /* Ensure the background image covers the entire background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0vw;
+  height: 100vh;
+  width: 100vw;
+  border-radius: 1vh;
+  border: 0.5px solid black;
+  transform: translate(-0%, 0%);
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
+
 
 .card{
     backdrop-filter: blur(3px);
@@ -26,24 +32,86 @@
     border-radius: 7px;
     box-shadow: 2px 2px 10px 1px black;
   }
+  .Resultcard{
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+    overflow: unset;
+    background-color: rgba(232, 236, 232, 0.274);
+    width: 90vw;
+    height: 90vh;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 7px;
+    box-shadow: 2px 2px 10px 1px black;
+  }
+
   .fadeIn {
-    animation: fadeInAnimation 1.5s ease forwards; /* Apply the fadeIn animation */
+    animation: fadeInAnimation 3.5s ease forwards; /* Apply the fadeIn animation */
   }
   .fadeInEx {
-    animation: fadeInAnimation 0.9s ease forwards; /* Apply the fadeIn animation */
+    animation: fadeInAnimation 0.85s ease forwards; /* Apply the fadeIn animation */
   }
+  .enlarge {
+    animation: enlargeAnimation 1.3s ease forwards, fadeInAnimation 0.95s ease forwards;
+  }
+  .smallToBig{
+    animation: smallToBig 1.7s ease forwards, fadeInAnimation 1.5s ease forwards;
+  }
+  .cardResult{
+    animation-name: cardResult;
+    animation-duration: 1.5s; /* Adjust as needed */
+  }
+  
   
   @keyframes fadeInAnimation {
     0% {
       opacity: 0;
   }
-44%{
+60%{
        opacity: 0.01;
  }
   100% {
       opacity: 1;
   }
   }
+  @keyframes enlargeAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes smallToBig {
+  0% {
+      transform: scale(0.8);
+  }
+  60% {
+      transform: scale(1.2);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+@keyframes cardResult {
+  0% {
+      transform: scale(0.83333);
+  }
+  60% {
+      transform: scale(1.06);
+  }
+  100% {
+      transform: scale(1.00);
+  }
+}
 
 .button{
     backdrop-filter: blur(3px);
@@ -117,14 +185,14 @@
 }
 
 .optionBox{
-   
+    padding: 2.2vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     flex-shrink: 0;
     justify-content: space-evenly;
     align-content: space-around;
-    height: 55vh;
+    height: 59vh;
     width: 55vw;
     box-sizing: border-box;
     position: relative;

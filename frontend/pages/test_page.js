@@ -1,6 +1,4 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
-//import styles from '../styles/Home.module.css';
 import React, { useEffect, useState } from 'react';
 import Question from '../custom_components/Question/Question';
 import { useLocalStorage } from 'react-use';

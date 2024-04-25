@@ -1,7 +1,6 @@
 
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Button from '../custom_components/Button/Button'; // Import the Button component
 import styles from '../styles/index.module.css';
 import { useLocalStorage } from 'react-use';
 
@@ -10,7 +9,7 @@ const Index = () => {
   const router = useRouter();
   const [pageData, setPageData] = useState(null);
   const [sendData, setSendData] = useLocalStorage('myData', '');
-
+  
   
   useEffect(() => {
     const fetchData = async () => {
@@ -32,22 +31,23 @@ const Index = () => {
   const answersList = [];
 
   const testCount = pageData ? pageData.length : '';
+  console.log(testCount);
 
   
   
 
 //Burada querye pageData gibi değişkenleri atıp test page ine atıcaz 
   const handleClick = (input) => {  
-    const testID = input+1;
+    localStorage.clear();
+    const testID = input+4;
     const testData = pageData.find(item => item.id == testID);
     const questionCount = testData.questions.length;
+    const test = testData.description;
     setSendData({dataList: [testID, answersList, questionCount]});
     router.push({
       pathname:'/test_page',
       query: {
-        testID /*
-        answersList: JSON.stringify(answersList),
-        testCount*/
+        test 
       },
     });
     
@@ -59,7 +59,7 @@ const Index = () => {
   const buttons = [];
   for (let i = 0; i < testCount; i++) {
     buttons.push(
-      <Button key={i} onClick={() => handleClick(i)} children={`${i+1}`}></Button>
+      <button key={i} className={styles.customButton} onClick={() => handleClick(i)} ></button>
     );
   }
 

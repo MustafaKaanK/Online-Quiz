@@ -12,6 +12,7 @@ const Question = ({testID, answersList, questionCount}) =>{
 
   const router = useRouter();
   const [slug, setSlug] = useState(1);
+  const [index, setIndex] = useState(1);
   const [pageData, setPageData] = useState(null);
   const [sendData, setSendData] = useLocalStorage('myArray', []);
   const [animationTrigger, setAnimationTrigger] = useState(false);
@@ -32,6 +33,7 @@ const Question = ({testID, answersList, questionCount}) =>{
     
     if (slug) {
       fetchData();
+      setIndex(slug);
     }
     
     setAnimationTrigger(true);
@@ -39,15 +41,19 @@ const Question = ({testID, answersList, questionCount}) =>{
       setAnimationTrigger(false);
     }, 1200);
     return () => clearTimeout(timeout);
+
+    
   }, [slug]);
 
 
   const description = pageData ? pageData.description : '';
   const optionsslug = pageData ? pageData.options : [];
+  const test = pageData ? pageData.description : '';
   
  const testID1 = testID;
   
   const handleClick = (input) => {
+    setAnimationTrigger(false);
     setSendData(prev => {prev.push(input + 1); return prev;});
     console.log("sendData verisi:");
     
@@ -68,6 +74,7 @@ const Question = ({testID, answersList, questionCount}) =>{
 
 
    const handlePrevious = () => {
+    setAnimationTrigger(false);
     if(slug > 1){
     setSendData(prev => {prev.pop(); return prev;});    
     
@@ -99,11 +106,11 @@ return (
       <div className= {questionStyle.background}>
       <div className={`${questionStyle.card}`}>
           <div style={{display: 'flex', flexWrap: "wrap", flexDirection: "row", width: "75vw", justifyContent: "space-evenly", alignItems: "center", justifyItems: "space-between", bottom: "0px"}}>
-           <div className= {`${questionStyle.button} ${animationTrigger ? questionStyle.fadeInEx : ''}`} onClick= {() => handlePrevious()}>BACK</div>
-           <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.fadeInEx : ''}`}>{description}</div>          
-           <div className= {`${questionStyle.index} ${animationTrigger ? questionStyle.fadeInEx : ''}`}>{slug}/{questionCount}</div>     
+           <div className= {`${questionStyle.button} ${animationTrigger ? '' : ''}`} onClick= {() => handlePrevious()}>BACK</div>
+           <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.enlarge : ''}`}>{description}</div>          
+           <div className= {`${questionStyle.index} ${animationTrigger ? '' : ''}`}>{index}/{questionCount}</div>     
           </div>    
-          <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.fadeInEx : ''}`}>
+          <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.enlarge : ''}`}>
             {optionArray}
           </div>  
         </div>
