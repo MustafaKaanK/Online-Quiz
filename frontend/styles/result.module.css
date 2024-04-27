@@ -1,0 +1,269 @@
+.background {
+    background-image: url('/wallpaper1.png');
+    /* Ensure the background image covers the entire background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0vw;
+    height: 100vh;
+    width: 100vw;
+    border-radius: 1vh;
+    border: 0.5px solid black;
+    transform: translate(-0%, 0%);
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  
+  .card{
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      overflow: hidden;
+      overflow: unset;
+      background-color: rgba(232, 236, 232, 0.274);
+      width: 75vw;
+      height: 75vh;
+      align-items: center;
+      justify-content: space-evenly;
+      border-radius: 7px;
+      box-shadow: 2px 2px 10px 1px black;
+    }
+    .Resultcard{
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      overflow: hidden;
+      overflow: unset;
+      background-color: rgba(232, 236, 232, 0.274);
+      width: 90vw;
+      height: 90vh;
+      align-items: center;
+      justify-content: space-evenly;
+      border-radius: 7px;
+      box-shadow: 2px 2px 10px 1px black;
+    }
+  
+    .fadeIn {
+      animation: fadeInAnimation 3.5s ease forwards; /* Apply the fadeIn animation */
+    }
+    .fadeInEx {
+      animation: fadeInAnimation 0.85s ease forwards; /* Apply the fadeIn animation */
+    }
+    .enlarge {
+      animation: enlargeAnimation 1.3s ease forwards, fadeInAnimation 0.95s ease forwards;
+    }
+    .smallToBig{
+      animation: smallToBig 1.7s ease forwards, fadeInAnimation 1.5s ease forwards;
+    }
+    .cardResult{
+      animation-name: cardResult;
+      animation-duration: 1.5s; /* Adjust as needed */
+    }
+    
+    
+    @keyframes fadeInAnimation {
+      0% {
+        opacity: 0;
+    }
+  60%{
+         opacity: 0.01;
+   }
+    100% {
+        opacity: 1;
+    }
+    }
+    @keyframes enlargeAnimation {
+      0% {
+          transform: scale(1);
+      }
+      50% {
+          transform: scale(1.1);
+      }
+      100% {
+          transform: scale(1);
+      }
+  }
+  
+  @keyframes smallToBig {
+    0% {
+        transform: scale(0.8);
+    }
+    60% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+  }
+  
+  @keyframes cardResult {
+    0% {
+        transform: scale(0.83333);
+    }
+    60% {
+        transform: scale(1.06);
+    }
+    100% {
+        transform: scale(1.00);
+    }
+  }
+  
+  .button {
+    background-image: url('/home.svg');
+    background-size: contain; /* Scale the background image to fit within the element */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background image vertically and horizontally */
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: rgba(232, 236, 232, 0.274);
+    text-size-adjust: 0.2;
+    width: 8vw;
+    height: 8vh;
+    align-content: center;
+    justify-content: center;
+    border-radius: 2px;
+    box-shadow: 0.3px 0.3px 0.5px 0.5px black;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    font-size: 120%;
+    font-family: Calibri;
+  }
+  .button:hover{
+      backdrop-filter: blur(5px);
+      transform: scale(1.05);
+      background-color: rgba(5, 245, 37, 0.349);
+      
+    } 
+  .button:activate{
+      font-size: 1.1em;
+    }
+    
+    
+    .index{
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      background-color: rgba(232, 236, 232, 0.274);
+      font-size: 180%;
+      width: 4.5vw;
+      height: 5vh;
+      align-items: center;
+      justify-content: space-evenly;
+      border-radius: 40px;
+      box-shadow: 0.5px 0.5px 0.5px 0.5px black;    
+      flex-shrink: 0;
+      box-sizing: border-box;
+      position: relative;
+      cursor: pointer;
+      border: 0.5px solid black;
+      box-sizing: content-box;
+  
+    }
+  
+  .title{    
+    box-sizing: border-box;
+    text-overflow: break-word;
+    overflow:hidden;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 2.8vh;
+      height: 6.3vh;
+      width: 50vw;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      font-family: Calibri;
+      padding-left: 1.5vw;
+      padding-right: 1.5vw;
+  }
+  
+  .optionBox{
+    height: 40vh;
+    width: 40vw;
+  }
+    
+  .option {
+    text-overflow: break-word;
+    padding: 10px 18px;
+    overflow:hidden;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap; 
+    height: 10vh; 
+    width: 55vw; 
+    margin: 5px; 
+    border-radius: 7px; 
+    background-color: rgba(190, 176, 130, 0.212); 
+    color: rgb(0, 0, 0); 
+    align-items:center;
+    justify-content:center;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
+    font-size: 140%;
+    font-family: Calibri;
+    
+  
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .option {
+      font-size: 85%; /* Adjusted font size for smaller screens */
+      width: 45vw; /* Adjusted width for smaller screens */
+      height: 12vh;
+      flex-shrink: 1;
+    }
+    .index{
+      font-size: 85%; /* Adjusted font size for smaller screens */
+      width: 8vw; /* Adjusted width for smaller screens */
+      height: 4vh;
+      flex-shrink: 1;
+      left: 0px;
+    }
+    .title{
+      font-size: 85%; /* Adjusted font size for smaller screens */
+      width: 40vw; /* Adjusted width for smaller screens */
+      height: 15vh;
+      flex-shrink: 1;
+      box-sizing: border-box;
+    text-overflow: break-word;
+    overflow:hidden;
+      
+    }
+    .button{
+      font-size: 70%;
+      flex-shrink: 1;
+      width: 10vw;
+      left: 0px;
+    }
+    .button:hover{
+    }
+    .button:activate{
+    }
+  }
+  
+  
+  .option:hover{
+      backdrop-filter: blur(5px);
+      transform: scale(1.05);
+      background-color: rgba(5, 245, 37, 0.349);
+      
+  }
+  
+  .option:activate{
+      font-size: 1.1em;
+  }
+  
+  
+  

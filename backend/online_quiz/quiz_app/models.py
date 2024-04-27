@@ -26,7 +26,7 @@ class Question(models.Model):
         return f"No: {self.number_order} | Description : {self.description}"
     
 class Result(models.Model):
-    description = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=1000, default='')
     # TODO(MBM): Add variable for transfering images. 
     updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)

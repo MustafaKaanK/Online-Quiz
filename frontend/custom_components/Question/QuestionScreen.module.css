@@ -1,6 +1,10 @@
 .background {
-  background-image: url('/681763.jpg');
+  background-image: url('/wallpaperNew.jpg');
   /* Ensure the background image covers the entire background */
+  opacity: 0.90;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center; /* Centers the background image within the container */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,15 +14,16 @@
   height: 100vh;
   width: 100vw;
   border-radius: 1vh;
-  border: 0.5px solid black;
-  transform: translate(-0%, 0%);
-  overflow-x: hidden;
+  /*border: 0.5px solid black;*/
   box-sizing: border-box;
+  flex-shrink: 1;
+
 }
 
 
 .card{
-    backdrop-filter: blur(3px);
+    backdrop-filter: opacity(10px) ;
+    backdrop-filter: blur(4px);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -170,10 +175,10 @@
 .title{    
   box-sizing: border-box;
   text-overflow: break-word;
-  overflow:hidden;
     display: flex;
     flex-wrap: wrap;
-    font-size: 2.8vh;
+    font-size: 160%;
+    font-weight: 500;
     height: 6.3vh;
     width: 50vw;
     justify-content: center;
@@ -182,6 +187,7 @@
     font-family: Calibri;
     padding-left: 1.5vw;
     padding-right: 1.5vw;
+    margin-top: 1vh;
 }
 
 .optionBox{
@@ -210,7 +216,7 @@
   width: 55vw; 
   margin: 5px; 
   border-radius: 7px; 
-  background-color: rgba(190, 176, 130, 0.212); 
+  background-color: rgba(192, 179, 135, 0.116); 
   color: rgb(0, 0, 0); 
   align-items:center;
   justify-content:center;
@@ -218,6 +224,7 @@
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
   font-size: 140%;
+  font-weight: 500;
   font-family: Calibri;
   
 
@@ -226,20 +233,22 @@
 /* Media query for smaller screens */
 @media screen and (max-width: 768px) {
   .option {
-    font-size: 85%; /* Adjusted font size for smaller screens */
+    font-size: 100%; /* Adjusted font size for smaller screens */
     width: 45vw; /* Adjusted width for smaller screens */
     height: 12vh;
     flex-shrink: 1;
   }
   .index{
-    font-size: 85%; /* Adjusted font size for smaller screens */
+    font-size: 140%; /* Adjusted font size for smaller screens */
     width: 8vw; /* Adjusted width for smaller screens */
-    height: 4vh;
+    height: 6vh;
+    left: 1vw;
+    right: 1vw;
     flex-shrink: 1;
     left: 0px;
   }
   .title{
-    font-size: 85%; /* Adjusted font size for smaller screens */
+    font-size: 120%; /* Adjusted font size for smaller screens */
     width: 40vw; /* Adjusted width for smaller screens */
     height: 15vh;
     flex-shrink: 1;

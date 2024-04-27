@@ -103,18 +103,19 @@ const Question = ({testID, answersList, questionCount}) =>{
 
 return (
     <>
-      <div className= {questionStyle.background}>
-      <div className={`${questionStyle.card}`}>
+      <div className= {questionStyle.background}></div> 
+      <div style={{display: "flex",justifyContent: "center", alignItems: "center", height: "100vh", width: "100vw", boxSizing: "border-box", top: "0px", left: "0px", position: "fixed" }}>
+       <div className={`${questionStyle.card}`}>
           <div style={{display: 'flex', flexWrap: "wrap", flexDirection: "row", width: "75vw", justifyContent: "space-evenly", alignItems: "center", justifyItems: "space-between", bottom: "0px"}}>
-           <div className= {`${questionStyle.button} ${animationTrigger ? '' : ''}`} onClick= {() => handlePrevious()}>BACK</div>
-           <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.enlarge : ''}`}>{description}</div>          
-           <div className= {`${questionStyle.index} ${animationTrigger ? '' : ''}`}>{index}/{questionCount}</div>     
+            <div className= {`${questionStyle.button} ${animationTrigger ? '' : ''}`} onClick= {() => handlePrevious()}>BACK</div>
+            <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.enlarge : ''}`}>{description}</div>          
+            <div className= {`${questionStyle.index} ${animationTrigger ? '' : ''}`}>{index}/{questionCount}</div>     
           </div>    
           <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.enlarge : ''}`}>
             {optionArray}
           </div>  
         </div>
-      </div>      
+      </div>     
     </>
   );
 };
