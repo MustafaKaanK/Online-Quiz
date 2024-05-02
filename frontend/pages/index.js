@@ -59,7 +59,7 @@ const Index = () => {
   const buttons = [];
   for (let i = 0; i < testCount; i++) {
     buttons.push(
-      <button key={i} className={styles.customButton} onClick={() => handleClick(i)} ></button>
+      <button key={i} className={styles.customButton} onClick={() => handleClick(i)} ><div>{testCount}</div></button>
     );
   }
 

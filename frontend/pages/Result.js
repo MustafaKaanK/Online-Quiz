@@ -2,7 +2,6 @@ import questionStyle from '../styles/result.module.css'
 import { useRouter } from 'next/router';
 import React, { useEffect, useState} from 'react';
 import { useLocalStorage } from 'react-use';
-import imgStyles from '../custom_components/Images/img.module.css';
 
 
 const Result = () =>{
@@ -86,23 +85,18 @@ const Result = () =>{
   return (
     <>
       <div className= {questionStyle.background}>
-        <div className= {`${questionStyle.Resultcard} ${questionStyle.cardResult}`}>
-          <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.smallToBig : ''}` }>
-            <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyItems: "left", textAlign: "center", gap: "1vh", fontSize: "3vh", color: "rgba(0, 0, 0, 1)"}}>
-            <img src={`${descriptionTitle}.jpg`} className={imgStyles.img} alt="Image" /> 
-            <br/>
+        <div className= {`${questionStyle.Resultcard} ${questionStyle.cardResult} `}>          
+            <div className= {`${questionStyle.fadeIn} `}style={{display: "flex", flexDirection: "column", alignItems: "center", justifyItems: "flex-start", width: "60vw", height: "50vh",  gap: "1vh", fontSize: "3vh", color: "rgba(0, 0, 0, 1)", paddingTop: "3vh", fontSize: "140%", fontFamily: "Arial"}}>
+            <img src={`${descriptionTitle}.jpg`} className={questionStyle.img} alt="Image" /> 
             <div>
              {descriptionTitle}
+             <br/>
+             <br/>
             </div>
             <div > 
-             {descriptionText} </div>
-            <div s>
-             {"Update Date: " + responseData.updated_date}
-            </div>
+             {descriptionText} </div>            
             <div className= {questionStyle.button} onClick={() => handleclick()}>
-
-            </div>
-            </div> 
+            </div>            
           </div>            
         </div>
       </div>   
