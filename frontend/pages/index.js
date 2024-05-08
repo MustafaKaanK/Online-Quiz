@@ -3,12 +3,14 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/index.module.css';
 import { useLocalStorage } from 'react-use';
+import DropDowsDescriptionIndex from '../custom_components/Drop_down/DropDownForIndex';
 
 
 const Index = () => {
   const router = useRouter();
   const [pageData, setPageData] = useState(null);
   const [sendData, setSendData] = useLocalStorage('myData', '');
+  const [animationTrigger, setAnimationTrigger] = useState(true);
   
   
   useEffect(() => {
@@ -26,6 +28,8 @@ const Index = () => {
     };
 
     fetchData();
+    
+    
   }, []);
 
   const answersList = [];
@@ -59,18 +63,19 @@ const Index = () => {
   const buttons = [];
   for (let i = 0; i < testCount; i++) {
     buttons.push(
-      <button key={i} className={styles.customButton} onClick={() => handleClick(i)} ><div>{testCount}</div></button>
+      <button key={i} className={styles.customButton} onClick={() => handleClick(i)} ><div></div></button>
     );
   }
 
-
   return (
     <>
-     <div className= {styles.background}>
-          {buttons}
-      </div>      
+     <div className = {`${styles.background} ${styles.fadeIn}`}>
+      {buttons}
+     <DropDowsDescriptionIndex></DropDowsDescriptionIndex>  
+      </div>    
     </>
   );
 };
+
 
 export default Index;

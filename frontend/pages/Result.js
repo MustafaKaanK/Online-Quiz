@@ -2,13 +2,14 @@ import questionStyle from '../styles/result.module.css'
 import { useRouter } from 'next/router';
 import React, { useEffect, useState} from 'react';
 import { useLocalStorage } from 'react-use';
-
+import { FacebookShareButton, FacebookIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton,TwitterIcon, WhatsappShareButton,WhatsappIcon} from 'react-share';
+import DropdownDescription from '../custom_components/Drop_down/DropDownForResult';
 
 const Result = () =>{
   const router = useRouter();
   const {testID} = router.query;
   const [responseData, setResponseData] = useState(`null`);
-  const [animationTrigger, setAnimationTrigger] = useState(false);
+  const [animationTrigger, setAnimationTrigger] = useState(true);
  
   const [dataList] = useLocalStorage('myArray', '');
   const [newID, setnewID] = useLocalStorage('newID', '');
@@ -19,14 +20,12 @@ const Result = () =>{
 
   
   useEffect(() => {
-    setAnimationTrigger(false);
     if (testID) {
       setnewID(testID); // Setting testID in localStorage
     } 
-      setAnimationTrigger(true);
       const timeout = setTimeout(() => {
         setAnimationTrigger(false);
-      }, 2500);
+      }, 1210);
     
       return () => clearTimeout(timeout);
     
@@ -84,22 +83,27 @@ const Result = () =>{
    //optionbox kısmını sil
   return (
     <>
-      <div className= {questionStyle.background}>
-        <div className= {`${questionStyle.Resultcard} ${questionStyle.cardResult} `}>          
-            <div className= {`${questionStyle.fadeIn} `}style={{display: "flex", flexDirection: "column", alignItems: "center", justifyItems: "flex-start", width: "60vw", height: "50vh",  gap: "1vh", fontSize: "3vh", color: "rgba(0, 0, 0, 1)", paddingTop: "3vh", fontSize: "140%", fontFamily: "Arial"}}>
-            <img src={`${descriptionTitle}.jpg`} className={questionStyle.img} alt="Image" /> 
+      <div className= {questionStyle.background}>      
+        <div className= {`${questionStyle.Resultcard}  ${animationTrigger ? questionStyle.cardResult : ''} `}>          
+          <div className= {`${questionStyle.innerCard} ${animationTrigger ? questionStyle.fadeInEx : ''} `} >
+            <img src={`${descriptionTitle}.jpg`} className= {`${questionStyle.img} ${animationTrigger ? questionStyle.fadeInEx : ''} `} alt="Image" />             
             <div>
-             {descriptionTitle}
-             <br/>
-             <br/>
+              {descriptionTitle}
             </div>
-            <div > 
+            <div className={questionStyle.description}> 
              {descriptionText} </div>            
-            <div className= {questionStyle.button} onClick={() => handleclick()}>
-            </div>            
+            <div className= {questionStyle.button} onClick={() => handleclick()}></div>  
+                   
+            <FacebookShareButton className={questionStyle.share} style={{marginRight: "57.3vw"}} url='localhost'><FacebookIcon  borderRadius={40}></FacebookIcon></FacebookShareButton>
+            <LinkedinShareButton className={questionStyle.share} style={{marginRight: "50.3vw"}}url='localhost'><LinkedinIcon  borderRadius={40}></LinkedinIcon></LinkedinShareButton>
+            <TwitterShareButton className={questionStyle.share} style={{marginRight: "43.3vw"}} url='localhost'><TwitterIcon  borderRadius={40}></TwitterIcon></TwitterShareButton>
+            <WhatsappShareButton className={questionStyle.share} style={{marginRight: "36.3vw"}} url='localhost'><WhatsappIcon  borderRadius={40}></WhatsappIcon></WhatsappShareButton>        
+                   
           </div>            
         </div>
-      </div>   
+        <DropdownDescription></DropdownDescription>
+      </div>  
+       
     </>
   );
 };

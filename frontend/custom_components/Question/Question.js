@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import dynamic from "next/dynamic";
 import questionStyle from './QuestionScreen.module.css';
+import DropdownDescription from '../Drop_down/DropDownForIndex';
+
 
 const Question = ({ testID, answersList, questionCount }) => {
   const router = useRouter();
@@ -10,11 +12,13 @@ const Question = ({ testID, answersList, questionCount }) => {
   const [index, setIndex] = useState(1);
   const [pageData, setPageData] = useState(null);
   const [sendData, setSendData] = useLocalStorage('myArray', []);
-  const [animationTrigger, setAnimationTrigger] = useState(false);
+  const [animationTrigger, setAnimationTrigger] = useState(true);
   const [mainAnimation, setMainAnimation] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () => {      
+      console.log(sendData);
+      console.log("Slug" + slug);
       try {
         const response = await fetch(`http://localhost:8000/quizzes/${testID}/questions/${slug}`);
         if (response.ok) {
@@ -31,23 +35,33 @@ const Question = ({ testID, answersList, questionCount }) => {
       setIndex(slug);
     }
 
-    setAnimationTrigger(true);
+    //setAnimationTrigger(true);
     const timeout = setTimeout(() => {
       setMainAnimation(false);
-    }, 1200);
+    }, 860);
     const timeout2 = setTimeout(() => {
       setAnimationTrigger(false);
-    }, 1200);
+    }, 860);
+
     clearTimeout(timeout2);
-    return () => clearTimeout(timeout);
+    clearTimeout(timeout);
+    setAnimationTrigger(true);
+    localStorage.removeItem('myArray');
+    return;
+
   }, [slug]);
 
   const description = pageData ? pageData.description : '';
   const optionsslug = pageData ? pageData.options : [];
 
   const handleClick = (input) => {
-    setAnimationTrigger(false);
-    setSendData(prev => {prev.push(input + 1); return prev;});
+    setAnimationTrigger(false);    
+    if (slug == 1){
+      setSendData(prev => {prev.push(input + 1); return prev;});
+    }else{
+      setSendData(prev => {prev.push(input + 1); return prev;});
+    }
+      
 
     if (questionCount === slug) {
       router.push({
@@ -83,10 +97,11 @@ const Question = ({ testID, answersList, questionCount }) => {
 
   return (
     <>
-      <div className={questionStyle.background}></div>
-      <div className={`${mainAnimation ? questionStyle.enlarge : ''}`} style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", width: "100vw", position: "fixed" }}>
+      <div className={`${questionStyle.background} ${mainAnimation ? questionStyle.enlarge : ''}`}>      
+      </div>
+      <div className={`${questionStyle.outerCard} ${mainAnimation ? questionStyle.enlargeX : ''}`} >
         <div className={questionStyle.card}>
-          <div style={{ display: 'flex', flexWrap: "wrap", flexDirection: "row", width: "calc(45vw)", justifyContent: "space-evenly", alignItems: "start-flex", justifyItems: "space-between", marginTop: "1vh" }}>
+          <div className={`${questionStyle.innerCard}`}>
             <div className={`${questionStyle.button} `} onClick={() => handlePrevious()}>BACK</div>
             <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.enlargeX : ''}`}>{description}</div>
             <div className={`${questionStyle.index} `}>{index}/{questionCount}</div>
