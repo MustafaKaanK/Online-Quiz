@@ -163,11 +163,11 @@
     border-radius: 2px;
     flex-shrink: 0;
     box-sizing: border-box;
-    position: fixed;
     cursor: pointer;
     font-size: 120%;
     font-family: Calibri;
     margin-top: 72.1vh;
+    position: absolute;
   }
   .button:hover{
       backdrop-filter: blur(5px);
@@ -186,18 +186,17 @@
       flex-wrap: wrap;
       flex-direction: column;
       background-color: rgba(232, 236, 232, 0.274);
-      width: 5vw;
-      height: 5vh;
-      align-content: center;
-      justify-content: center;
+      width: calc(50px);
+      height: 40px;
       border-radius: 2px;
-      flex-shrink: 0;
+      flex-shrink: 1;
       box-sizing: border-box;
-      position: fixed;
       font-family: Calibri;
-      margin-top: 73vh;    
-      border-radius: 40%;  
+      border-radius: 40%;
+      position: relative;
     }
+
+
   .share:hover{
         transform: scale(1.09);
         background-color: rgba(5, 245, 37, 0.349);
@@ -207,15 +206,25 @@
         font-size: 1.1em;
       }
       
-    
+  .socialbox {
+  display: flex;
+  flex-direction: row;
+  width: 20vw;
+  height: 5vh;
+  overflow: visible;
+  visibility: visible;
+  z-index: 99999;
+  margin-top: calc((19.5vh)*0.6);
+  margin-right: calc((105vw)*0.6);
+  gap: calc((1vw)*0.6);
+  position:static;
+}
   
   
   
   /* Media query for smaller screens */
   @media screen and (max-width: 1200px) {
     .share {
-      width: 4vw;
-      height: 4vh;
     }
     .Resultcard{
      width: 90vw;
@@ -225,6 +234,8 @@
       padding-top: 2vh;
       width: 80vw;
     }
+    .socialbox {
+    }
   }
   
     /* Media query for smaller screens */
@@ -232,6 +243,9 @@
       .share {
         width: 3.5vw;
         height: 3.5vh;
+      }
+      .socialbox {
+        margin-right: calc(32.3vw + 15px);
       }
     }
   

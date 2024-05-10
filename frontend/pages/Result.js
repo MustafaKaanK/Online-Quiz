@@ -91,14 +91,14 @@ const Result = () =>{
               {descriptionTitle}
             </div>
             <div className={questionStyle.description}> 
-             {descriptionText} </div>            
-            <div className= {questionStyle.button} onClick={() => handleclick()}></div>  
-                   
-            <FacebookShareButton className={questionStyle.share} style={{marginRight: "57.3vw"}} url='localhost'><FacebookIcon  borderRadius={40}></FacebookIcon></FacebookShareButton>
-            <LinkedinShareButton className={questionStyle.share} style={{marginRight: "50.3vw"}}url='localhost'><LinkedinIcon  borderRadius={40}></LinkedinIcon></LinkedinShareButton>
-            <TwitterShareButton className={questionStyle.share} style={{marginRight: "43.3vw"}} url='localhost'><TwitterIcon  borderRadius={40}></TwitterIcon></TwitterShareButton>
-            <WhatsappShareButton className={questionStyle.share} style={{marginRight: "36.3vw"}} url='localhost'><WhatsappIcon  borderRadius={40}></WhatsappIcon></WhatsappShareButton>        
-                   
+             {descriptionText} </div>             
+            <div className={questionStyle.socialbox}>
+            <FacebookShareButton className={questionStyle.share}  url='localhost'><FacebookIcon  borderRadius={40}></FacebookIcon></FacebookShareButton>
+            <LinkedinShareButton className={questionStyle.share} url='localhost'><LinkedinIcon  borderRadius={40}></LinkedinIcon></LinkedinShareButton>
+            <TwitterShareButton className={questionStyle.share}  url='localhost'><TwitterIcon  borderRadius={40}></TwitterIcon></TwitterShareButton>
+            <WhatsappShareButton className={questionStyle.share}  url='localhost'><WhatsappIcon  borderRadius={40}></WhatsappIcon></WhatsappShareButton>        
+            </div> 
+            <div className= {questionStyle.button} onClick={() => handleclick()}></div> 
           </div>            
         </div>
         <DropdownDescription></DropdownDescription>

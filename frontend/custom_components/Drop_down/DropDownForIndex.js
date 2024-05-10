@@ -10,7 +10,7 @@ const DropdownParagraph = () => {
   };
 
   return (
-    <div className={style.container} >
+    <div className={style.container}>
       <div className = {style.position} onClick={toggleDropdown}></div>
       <p 
         className={`${isOpen ? style.dropdownparagraphopen : style.dropdownparagraph} ${isOpen ? style.fadeInEx : ''}`}

@@ -56,7 +56,6 @@ const Index = () => {
     });
     
   };
-
   
 
   //Array according to test count

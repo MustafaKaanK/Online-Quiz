@@ -1,6 +1,5 @@
 .background {
   background-image: url('/bluePaper.jpg');
-  opacity: 1;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center; 
@@ -15,8 +14,6 @@
   border-radius: 1vh;
   box-sizing: border-box;
   flex-shrink: 1;
-  filter: blur(0px);
-
 }
 
 .outerCard{
@@ -26,36 +23,39 @@
   height: 100vh;
   width: 100vw;
   position: fixed;
+  
+  
 }
 
 .card{
-    backdrop-filter: opacity(10px) ;
-    backdrop-filter: blur(4px); 
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     overflow: hidden;
-    overflow: unset;
     background-color: rgb(247, 246, 243);
-    width: 45vw;
-    height: 55vh;
+    width: 600px;
+    height: 400px;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content:flex-start;
     border-radius: 7px;
     box-shadow: 1.5px 1.5px 10px 1px black;
-    box-sizing: content-box;
-    margin-left: auto;
-    margin-right: auto;
+    box-sizing: border-box;
+    /*margin-right: 3.8vw;*/
+    /*padding-right: 290px;*/
+    margin-left: 1vw;
+    margin-right: 3.5vw;
+    /*transform: scale(1.2);*/
+    
   }
 .innerCard{
     display: flex;
     flex-wrap: wrap;
     align-items: start-flex;
     flex-direction: row;
-    width: calc(45vw);
+    width: 600px;
     justify-content: space-evenly;
     justify-items: space-between;
-    margin-top: 1vh;
+    margin-top: 20px;
     
   }
 
@@ -73,6 +73,9 @@
   }
   .smallToBig{
     animation: smallToBig 1.7s ease forwards, fadeInAnimation 1.5s ease forwards;
+  }
+  .cleanAnimation {
+    animation: clean 0.85s ease, fadeInAnimation 0.8s ease forwards;
   }
   
   
@@ -110,6 +113,19 @@
       transform: scale(1);
   }
 }
+
+@keyframes clean {
+  0% {
+      width: calc(535px);
+  }
+  70% {
+    width: calc(578px);
+  }
+  100% {
+    width: calc(535px);
+  }
+}
+
 @keyframes smallToBig {
   0% {
       transform: scale(0.8);
@@ -135,14 +151,13 @@
 }
 
 .button {
-  backdrop-filter: blur(3px);
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   background-color: rgba(232, 236, 232, 0.274);
-  font-size: 1.2vw; /* Adjust text size to fit inside the element */
-  width: 4.5vw;
-  height: 5vh;
+  font-size: 18px; /* Adjust text size to fit inside the element */
+  width: calc(70px);
+  height: 35px;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
@@ -153,8 +168,8 @@
   cursor: pointer;
   border: 0.5px solid black;  
   /* padding-right: 1%;*/
- /* margin-left: 1.5%;
-*/
+  /*margin-left: calc(20px + 4vw);*/
+  margin-left: 1%;
   user-select: none; /* Disable text selection */
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -174,14 +189,13 @@
   
   
   .index{
-    backdrop-filter: blur(3px);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     background-color: rgba(232, 236, 232, 0.274);
-    font-size: 1.6vw;
-    width: 4.5vw;
-    height: 5vh;
+    font-size: 25px;
+    width: calc(70px);
+    height: 35px;
     align-items: center;
     justify-content: center;
     border-radius: 40px;
@@ -191,9 +205,11 @@
     position: relative;
     cursor: pointer;
     border: 0.5px solid black;
+    /*margin-right: calc(20px + 4vw);*/
     /*adding-left: 1%;
-    padding-right: 1%;
-    margin-right: 1.5%;*/
+    padding-right: 1%;*/
+    margin-right: 1%;
+
     user-select: none; /* Disable text selection */
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -209,16 +225,18 @@
     font-size: 125%;
     font-weight: 400;
     height: 6.3vh;
-    width: calc(33vw);
+    width: 400px;
     justify-content: center;
     align-content: center;
     text-align: center;
     font-family: Calibri;
-    /*padding-left: 0.2vw;
-    padding-right: 0.2vw;
-    */
-    flex-shrink: 1;
-    padding-bottom: 1.2vh;
+    padding-left: 1%;
+    padding-right: 1%;
+    
+    flex-shrink: 0;
+    padding-bottom: 1.5vh;
+    white-space: unset;
+
     user-select: none; /* Disable text selection */
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -233,15 +251,17 @@
     flex-wrap: wrap;
     flex-direction: column;
     overflow: visible;
-    flex-shrink: 1;
+    flex-shrink: 0;
     justify-content: flex-end;
     align-content: center;
-    height: auto;
-    width: 35vw;
+    height: 300px;
+    width: 465px;
     box-sizing: border-box;
     position: relative;
     top: 0px;
     margin: 5px 15px 5px 15px; 
+    overflow: visible;
+    
 }
   
 .option {
@@ -250,8 +270,8 @@
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap; 
-  height: 7vh; 
-  width: 40vw; 
+  height: 55px; 
+  width: 535px; 
   margin: 5px; 
   border-radius: 70px; 
   background-color: rgba(197, 187, 155, 0.116); 
@@ -261,12 +281,12 @@
   justify-content:center;
   box-sizing: border-box;
   cursor: pointer;
-  transition: transform 0.1s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
-  font-size: 0.95vw;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+  font-size: 101%;
   font-weight: 500;
   font-family: Verdana;
   overflow: visible;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 
   user-select: none; /* Disable text selection */
   -moz-user-select: none;
@@ -288,86 +308,66 @@
 
 
 /* Media query for smaller screens */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1050px) {
   
-  .card{
-    width: 60vw;
+  .card{/*
+    width: 60vw;*/
   }
 
-  .index{
-    font-size: calc(2vw); /* Adjusted font size for smaller screens */
-    width: 5vw; /* Adjusted width for smaller screens */
-    height: 6vh;
-    flex-shrink: 1;
-
-  }
   
   .button{
-    font-size: calc(1.5vw); /* Adjusted font size for smaller screens */
-    width: 5vw; /* Adjusted width for smaller screens */
+     /* Adjusted font size for smaller screens */
+   /* width: 5vw; 
     height: 6vh;
-    flex-shrink: 1;
+    flex-shrink: 1;*/
   }
   .button:hover{
     transform: scale(1.00);
     background-color: rgba(5, 245, 37, 0);
+  }
+  .option{/*
+    font-size: 100%;
+    width: 50vw;
+    white-space:unset;*/
+  }
+  .option:hover{    
+  transform: scale(1.00);
+  background-color: rgba(5, 245, 37, 0);
+  }
+  .innerCard{/*
+    width: calc(60vw);*/
+  }
+  .title{/*
+    width: calc(44vw);*/
+  }
+}
+
+
+@media screen and (max-width: 750px) {
+  
+  .card{
+    height: 440px;
+    aspect-ratio: 440/530;
+    flex-shrink: 1;
+    
+  }
+  .optionBox{
+    height: 360px;
   }
   .option{
     font-size: 100%;
-    width: 50vw;
+    width: 450px;
     white-space:unset;
-  }
-  .option:hover{    
-  transform: scale(1.00);
-  background-color: rgba(5, 245, 37, 0);
+    height: calc(70px);
   }
   .innerCard{
-    width: calc(60vw);
+    width: calc(590px);
   }
   .title{
-    width: calc(44vw);
+    width: calc(380px);
   }
-}
-
-
-@media screen and (max-width: 600px) {
-  
-  .card{
-    height: 55vh;
-    width: 80vw;
-  }
-
   .index{
-    font-size: calc(2vw); /* Adjusted font size for smaller screens */
-    width: 8vw; /* Adjusted width for smaller screens */
-    height: 6vh;
-    flex-shrink: 1;
-
-  }
-  
-  .button{
-    font-size: calc(1.5vw); /* Adjusted font size for smaller screens */
-    width: 8vw; /* Adjusted width for smaller screens */
-    height: 6vh;
-    flex-shrink: 1;
-  }
-  .button:hover{
-    transform: scale(1.00);
-    background-color: rgba(5, 245, 37, 0);
-  }
-  .option{
-    font-size: 120%;
-    width: 68vw;
-    white-space:unset;
-  }
-  .option:hover{    
-  transform: scale(1.00);
-  background-color: rgba(5, 245, 37, 0);
-  }
-  .innerCard{
-    width: calc(60vw);
-  }
-  .title{
-    width: calc(44vw);
+    margin-left: 0px;
   }
 }
+

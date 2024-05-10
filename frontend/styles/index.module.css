@@ -1,17 +1,14 @@
 .background {
   background-image: url('/111111book-table.jpg');
-  backdrop-filter: 1px;
-  /* Ensure the background image covers the entire background */
-  opacity: 1;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center; /* Centers the background image within the container */
+  background-position: center; /* Centers the background image within the container */  
   display: flex;
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  top: 0;
-  left: 0vw;
+  bottom: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   border-radius: 0;
@@ -29,10 +26,9 @@
   background-repeat: no-repeat; /* Prevent the image from repeating */
   background-position: center; /* Center the background image */
   opacity: 95%;
-  font-size: 125%;
   border: 2px solid #333;
-  width: 22vw;
-  height: 50%;
+  width: calc(300px + 2vw);
+  aspect-ratio: 10/11;
   box-sizing: border-box;
   text-decoration: none;
   display: inline-block;
@@ -41,7 +37,9 @@
   justify-items: flex-end;
   align-content: flex-end;
   border-radius: 10%;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease,;
+  margin-left: 15%;
+  margin-right: 15%;
   
 }
 
@@ -69,8 +67,7 @@
 @media screen and (max-width: 1200px) {
 
   .customButton {
-    width: 32vw;
-    height: 50%;
+   /* width: calc(23vw + 7vh);*/
   }
 
   .customButton:hover {
@@ -80,11 +77,8 @@
 
   .background {
     background-image: url('/111111book-table.jpg');
-    backdrop-filter: 1px;
-    /* Ensure the background image covers the entire background */
-    opacity: 1;
-    background-size: 125% 110%; /* Cover 80% of the width of the page */
-    background-position: center;
+    background-size: calc(75% + 350px) calc(90% + 200px);
+    background-position: contain;
     background-repeat: no-repeat;
     
   
@@ -96,8 +90,8 @@
 @media screen and (max-width: 700px) {
 
   .customButton {
-    width: 45vw;
-    height: 50%;
+   /* width: calc(23vw + 10vh);*/
+   
   }
 
   .customButton:hover {
@@ -106,15 +100,8 @@
 
 
   .background {
-    background-image: url('/111111book-table.jpg');
-    backdrop-filter: 1px;
-    /* Ensure the background image covers the entire background */
-    opacity: 1;
-    background-size: 135% 115%; /* Cover 80% of the width of the page */
-    background-position: center;
-    background-repeat: no-repeat;
     
-  
+    background-size: calc(75% + 350px) calc(85% + 300px);
   }
 
 
