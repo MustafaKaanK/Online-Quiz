@@ -16,9 +16,10 @@ const Question = ({ testID, answersList, questionCount }) => {
   const [mainAnimation, setMainAnimation] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {      
+    const fetchData = async () => {    
+      console.log("True falselar ilk check"+animationTrigger + mainAnimation);
       console.log(sendData);
-      console.log("Slug" + slug);
+      console.log("Slug " + slug);
       try {
         const response = await fetch(`http://localhost:8000/quizzes/${testID}/questions/${slug}`);
         if (response.ok) {
@@ -35,19 +36,21 @@ const Question = ({ testID, answersList, questionCount }) => {
       setIndex(slug);
     }
 
-    //setAnimationTrigger(true);
-    const timeout = setTimeout(() => {
-      setMainAnimation(false);
-    }, 860);
+    
     const timeout2 = setTimeout(() => {
       setAnimationTrigger(false);
-    }, 860);
+    }, 60);
+    const timeout3 = setTimeout(() => {
+      setAnimationTrigger(true);
+    }, 70);
 
-    clearTimeout(timeout2);
-    clearTimeout(timeout);
-    setAnimationTrigger(true);
+    
     localStorage.removeItem('myArray');
-    return;
+    console.log("True Falselar return "+animationTrigger + mainAnimation);
+    return () => {
+      clearTimeout(timeout3);
+      clearTimeout(timeout2);
+    };
 
   }, [slug]);
 
@@ -95,18 +98,22 @@ const Question = ({ testID, answersList, questionCount }) => {
     );
   });
 
+  // İlk saniyelerde hover efekti iptal etmeye çalışıyoz
+  //<div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.enlargeX : questionStyle.cleanAnimation} ${animationTrigger ? questionStyle.disableHover : questionStyle.deActivateHover}`}>
+          
+
   return (
     <>
       <div className={`${questionStyle.background} ${mainAnimation ? questionStyle.enlarge : ''}`}>      
       </div>
       <div className={`${questionStyle.outerCard} ${mainAnimation ? questionStyle.enlargeX : ''}`} >
         <div className={questionStyle.card}>
-          <div className={`${questionStyle.innerCard}`}>
-            <div className={`${questionStyle.button} `} onClick={() => handlePrevious()}>BACK</div>
+          <div className={`${questionStyle.innerCard}`}> 
+            <div className={`${questionStyle.button} `} onClick={() => handlePrevious()}>BACK</div> 
             <div className={`${questionStyle.title} ${animationTrigger ? questionStyle.enlargeX : ''}`}>{description}</div>
             <div className={`${questionStyle.index} `}>{index}/{questionCount}</div>
           </div>
-          <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.enlargeX : ''}`}>
+          <div className={`${questionStyle.optionBox} ${animationTrigger ? questionStyle.enlargeX : ''}  `}>
             {optionArray}
           </div>
         </div>
