@@ -36,20 +36,11 @@ const Question = ({ testID, answersList, questionCount }) => {
       setIndex(slug);
     }
 
-    
-    const timeout2 = setTimeout(() => {
-      setAnimationTrigger(false);
-    }, 60);
-    const timeout3 = setTimeout(() => {
-      setAnimationTrigger(true);
-    }, 70);
+    setAnimationTrigger(true)
 
-    
     localStorage.removeItem('myArray');
     console.log("True Falselar return "+animationTrigger + mainAnimation);
     return () => {
-      clearTimeout(timeout3);
-      clearTimeout(timeout2);
     };
 
   }, [slug]);

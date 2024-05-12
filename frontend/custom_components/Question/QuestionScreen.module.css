@@ -14,6 +14,7 @@
   border-radius: 1vh;
   box-sizing: border-box;
   flex-shrink: 1;
+  will-change: transform, opacity;
 }
 
 .outerCard{
@@ -23,7 +24,6 @@
   height: 100vh;
   width: 100vw;
   position: fixed;
-  
   
 }
 
@@ -39,11 +39,8 @@
     border-radius: 7px;
     box-shadow: 1.5px 1.5px 10px 1px black;
     box-sizing: border-box;
-    /*margin-right: 3.8vw;*/
-    /*padding-right: 290px;*/
-    margin-left: 0.2vw;
-    margin-right: 3.3vw;
-    /*transform: scale(1.2);*/
+    margin-left: 18px;
+    margin-right: 35px;
     flex-shrink: 1;
     vertical-align: top;
     
@@ -70,7 +67,11 @@
     animation: enlargeAnimation 1.25s ease forwards, fadeInAnimation 0.85s ease forwards;
   }
   .enlargeX {
-    animation: enlargeAnimationX 0.85s ease forwards, fadeInAnimation 0.8s ease forwards;
+    animation: enlargeAnimationX 0.85s ease forwards, fadeInAnimation 0.8s ease forwards;       
+  }
+
+  .enlargeO {
+    transition: transform 0.5s ease, opacity 0.5s ease;
   }
   .smallToBig {
     animation: smallToBig 1.7s ease forwards, fadeInAnimation 1.5s ease forwards;
@@ -99,7 +100,7 @@
         transform: scale(1.25);
     }
     100% {
-        transform: scale(1);
+        transform: scale(1);        
     }
 }
 
@@ -169,7 +170,7 @@
   border-radius: 40px;
   box-shadow: 0.5px 0.5px 0.5px 0.5px black;    
   flex-shrink: 1;
-  box-sizing: border-box;
+  box-sizing: content-box;
   position: relative;
   cursor: pointer;
   border: 0.5px solid black;  
@@ -208,7 +209,7 @@
     border-radius: 40px;
     box-shadow: 0.5px 0.5px 0.5px 0.5px black;    
     flex-shrink: 1;
-    box-sizing: border-box;
+    box-sizing: content-box;
     position: relative;
     cursor: pointer;
     border: 0.5px solid black;
@@ -257,7 +258,6 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    overflow: visible;
     flex-shrink: 0;
     justify-content: flex-end;
     align-content: center;
@@ -267,7 +267,6 @@
     position: relative;
     top: 0px;
     margin: 5px 15px 5px 15px; 
-    overflow: visible;
     
 }
   
@@ -278,7 +277,7 @@
   display: flex;
   flex-wrap: wrap; 
   height: 55px; 
-  width: 535px; 
+  width: 540px; 
   margin: 5px; 
   border-radius: 70px; 
   background-color: rgba(197, 187, 155, 0.116); 
@@ -292,8 +291,7 @@
   font-size: 101%;
   font-weight: 500;
   font-family: Verdana;
-  overflow: visible;
-  /*white-space: nowrap;*/
+  white-space: nowrap;
 
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -320,65 +318,64 @@
 /* Media query for smaller screens */
 @media screen and (max-width: 1200px) {
   
-  .card{
-    
-  }
-
-  
-  .button{
-     /* Adjusted font size for smaller screens */
-   /* width: 5vw; 
-    height: 6vh;
-    flex-shrink: 1;*/
-  }
   .button:hover{
     transform: scale(1.00);
     background-color: rgba(5, 245, 37, 0);
   }
-  .option{/*
-    font-size: 100%;
-    width: 50vw;
-    white-space:unset;*/
-  }
   .option:hover{    
   transform: scale(1.00);
   background-color: rgba(5, 245, 37, 0);
-  }
-  .innerCard{/*
-    width: calc(60vw);*/
-  }
-  .title{/*
-    width: calc(44vw);*/
   }
 }
 
 
 @media screen and (max-width: 750px) {
   
-  .card{
-    
-   /* width: 600px;
-    height: 440px;*/
-    flex-shrink: 1;
-    min-height: 240px;
-    
-  }
-  .optionBox{
+  .card {
+    width: 85%;
+    height: calc(145px + 68%);
     overflow: visible;
   }
-  .option{/*
-    font-size: 100%;
-    width: 450px;
-    white-space:unset;
-    height: calc(70px);*/
+
+  .optionBox{
+    height: 70%;
+    width: 75%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: calc(50px + 11vh);
+    overflow: visible;
+    padding: 0px;
+    justify-content: center;
+    gap: 1%;
   }
-  .innerCard{/*
-    width: calc(80vw);*/
+
+  .option{
+    font-size: 96%;
+    width: calc(120%);
+    white-space:unset;
+    height: calc(9.3vh);
+    margin-top: 1.2vh;
+    margin-bottom: 1.2vh;
+  }
+  .innerCard{
+    width: calc(100%);
+    margin-top: 5vh;
   }
   .title{
-    width: calc(200px + 15vw);
+    width: calc( 69vw);
+    font-size: 115%;
+    margin-top: calc(55px + 2vh);
+    position: fixed;
+    flex-shrink: 0;
+    padding: 0;
   }
   .button{
+    position: fixed;
+    margin-left: calc(50px - 72%);
+  }
+  .index{
+    position: fixed;
+    margin-left: calc(-50px + 72%);
   }
 
   .outerCard{
