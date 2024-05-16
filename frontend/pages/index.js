@@ -70,7 +70,7 @@ const Index = () => {
     <>
      <div className = {`${styles.background} ${styles.fadeIn}`}>
       {buttons}
-     <DropDowsDescriptionIndex></DropDowsDescriptionIndex>  
+     <DropDowsDescriptionIndex/>  
       </div>    
     </>
   );
